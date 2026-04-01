@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Phishing Shield",
+  "version": "1.0.0",
+  "description": "AI-powered phishing protection with real-time analysis",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "notifications",
+    "tabs",
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/shield16.png",
+      "48": "icons/shield48.png",
+      "128": "icons/shield128.png"
+    },
+    "default_title": "Click to check this site"
+  },
+  "icons": {
+    "16": "icons/shield16.png",
+    "48": "icons/shield48.png",
+    "128": "icons/shield128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "settings.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

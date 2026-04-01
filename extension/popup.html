@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Shield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">🛡️</div>
+      <h1>Phishing Shield</h1>
+      <div class="status" id="api-status">Checking...</div>
+    </header>
+
+    <section class="site-info">
+      <h3>Current Site</h3>
+      <div class="url-box" id="current-url">Loading...</div>
+      <div class="risk-badge" id="risk-badge">Analyzing...</div>
+    </section>
+
+    <section class="analysis">
+      <h3>Security Analysis</h3>
+      <div class="feature-list" id="feature-list">
+        <div class="feature-item">
+          <span>🔐 HTTPS</span>
+          <span id="feat-https">-</span>
+        </div>
+        <div class="feature-item">
+          <span>📏 URL Length</span>
+          <span id="feat-length">-</span>
+        </div>
+        <div class="feature-item">
+          <span>🔍 Suspicious Words</span>
+          <span id="feat-suspicious">-</span>
+        </div>
+        <div class="feature-item">
+          <span>🌐 IP Address</span>
+          <span id="feat-ip">-</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="result-section" id="result-section">
+      <div class="confidence-bar">
+        <div class="confidence-fill" id="confidence-fill"></div>
+      </div>
+      <p class="confidence-text" id="confidence-text">Analyzing...</p>
+    </section>
+
+    <div class="actions">
+      <button id="check-btn" class="btn btn-primary">🔍 Analyze Site</button>
+      <button id="report-btn" class="btn btn-secondary">🚨 Report Phishing</button>
+    </div>
+
+    <footer class="footer">
+      <p>Powered by AI • <span id="request-count">0</span> sites checked</p>
+      <p style="margin-top: 5px; font-size: 0.75rem;"><a href="settings.html" style="color: #00d9ff; text-decoration: none;">⚙️ Settings</a></p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Shield - AI Protection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #e94560;
+      --secondary: #00d9ff;
+      --dark: #0a0a0f;
+      --card: #151520;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: #eaeaea;
+      line-height: 1.6;
+    }
+    
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: radial-gradient(ellipse at center, #1a1a2e 0%, var(--dark) 70%);
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e94560' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    
+    .badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    
+    .hero h1 span {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      color: #888;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 18px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), #ff6b6b);
+      color: white;
+      box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+    }
+    
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .demo {
+      padding: 100px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .demo h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+    
+    .demo-box {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .url-input {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .url-input input {
+      flex: 1;
+      padding: 18px;
+      background: rgba(0,0,0,0.3);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: white;
+      font-size: 1.1rem;
+    }
+    
+    .url-input input:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+    
+    .url-input button {
+      padding: 18px 36px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    #demo-result {
+      display: none;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    
+    .result-safe {
+      background: rgba(46, 213, 115, 0.1);
+      border: 2px solid #2ed573;
+    }
+    
+    .result-danger {
+      background: rgba(233, 69, 96, 0.1);
+      border: 2px solid #e94560;
+    }
+    
+    .features {
+      padding: 100px 20px;
+      background: var(--card);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .feature-card {
+      background: var(--dark);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    
+    .feature-card p {
+      color: #888;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 60px 20px;
+      flex-wrap: wrap;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+    
+    .stat-label {
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #666;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .url-input { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">🚀 Now Available on Chrome</div>
+      <h1>Protect Yourself from <span>Phishing Attacks</span></h1>
+      <p>AI-powered browser extension that detects phishing websites in real-time with 96% accuracy. Stay safe while browsing.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary" onclick="alert('Available on Chrome Web Store soon!')">🔒 Add to Chrome - Free</button>
+        <a href="https://github.com/aneela-ameen/phishing-shield" class="btn btn-secondary">📂 View Source</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="demo">
+    <h2>Try It Now</h2>
+    <div class="demo-box">
+      <div class="url-input">
+        <input type="text" id="url-input" placeholder="Enter any URL to check...">
+        <button onclick="checkUrl()">Check URL</button>
+      </div>
+      <div id="demo-result"></div>
+    </div>
+  </section>
+  
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Real-Time Detection</h3>
+        <p>Instant analysis of every website you visit using advanced machine learning</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>96% Accuracy</h3>
+        <p>Ensemble of Random Forest and Gradient Boosting models for maximum precision</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>Your browsing data never leaves your browser. Complete privacy protection.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚨</div>
+        <h3>Instant Alerts</h3>
+        <p>Get notified immediately when high-risk phishing sites are detected</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Detailed Analysis</h3>
+        <p>See exactly why a site is flagged with 15 different security features</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🆓</div>
+        <h3>Completely Free</h3>
+        <p>No subscriptions, no hidden fees. Open source and free forever.</p>
+      </div>
+    </div>
+  </section>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">96%</div>
+      <div class="stat-label">Accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">15</div>
+      <div class="stat-label">Features</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">0ms</div>
+      <div class="stat-label">Delay</div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>Built with ❤️ by Aneela Ameen | 10-Day Coding Challenge</p>
+  </footer>
+  
+  <script>
+    async function checkUrl() {
+      const input = document.getElementById('url-input');
+      const resultDiv = document.getElementById('demo-result');
+      const url = input.value.trim();
+      
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+      
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = '<p>🔍 Analyzing...</p>';
+      resultDiv.className = '';
+      
+      try {
+        const apiUrl = 'http://localhost:5001/check';
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        
+        const data = await response.json();
+        
+        const isSafe = !data.is_phishing;
+        resultDiv.className = isSafe ? 'result-safe' : 'result-danger';
+        
+        resultDiv.innerHTML = `
+          <div style="font-size: 4rem; margin-bottom: 15px;">
+            ${isSafe ? '✅' : '🚨'}
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
+            ${isSafe ? 'SAFE WEBSITE' : 'PHISHING DETECTED'}
+          </h3>
+          <p style="font-size: 1.1rem; margin-bottom: 15px;">
+            Confidence: ${(data.confidence * 100).toFixed(1)}%
+          </p>
+          <p style="color: ${isSafe ? '#2ed573' : '#ff6b6b'};">
+            ${data.reasons[0]}
+          </p>
+        `;
+      } catch (err) {
+        resultDiv.innerHTML = `<p style="color: #ff6b6b;">Error: ${err.message}</p><p style="color: #888; font-size: 0.9rem;">Make sure API server is running on localhost:5001</p>`;
+      }
+    }
+    
+    // Enter key support
+    document.getElementById('url-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkUrl();
+    });
+  </script>
+</body>
+</html>

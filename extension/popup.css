@@ -1,0 +1,263 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #eaeaea;
+}
+
+.container {
+  padding: 16px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 16px;
+}
+
+.logo {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  background: linear-gradient(45deg, #e94560, #00d9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status.online {
+  background: #00d9ff;
+  color: #1a1a2e;
+}
+
+.status.offline {
+  background: #ff6b6b;
+  color: white;
+}
+
+/* Site Info */
+.site-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.site-info h3 {
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.url-box {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #00d9ff;
+  word-break: break-all;
+  margin-bottom: 12px;
+  font-family: monospace;
+}
+
+.risk-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.risk-safe {
+  background: rgba(46, 213, 115, 0.2);
+  color: #2ed573;
+  border: 1px solid #2ed573;
+}
+
+.risk-low {
+  background: rgba(0, 217, 255, 0.2);
+  color: #00d9ff;
+  border: 1px solid #00d9ff;
+}
+
+.risk-medium {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  border: 1px solid #ffc107;
+}
+
+.risk-high {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+}
+
+.risk-critical {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+  border: 1px solid #e94560;
+}
+
+/* Analysis Section */
+.analysis {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.analysis h3 {
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feature-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.feature-item span:first-child {
+  color: #a0a0a0;
+}
+
+.feature-value {
+  font-weight: 600;
+}
+
+.feature-safe { color: #2ed573; }
+.feature-warning { color: #ffc107; }
+.feature-danger { color: #ff6b6b; }
+
+/* Result Section */
+.result-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.confidence-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2ed573, #ffc107, #e94560);
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+.confidence-text {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #e94560, #ff6b6b);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #eaeaea;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer p {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.footer span {
+  color: #00d9ff;
+  font-weight: 600;
+}
+
+/* Loading Animation */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #00d9ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
